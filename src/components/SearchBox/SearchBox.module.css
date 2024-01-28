@@ -1,0 +1,22 @@
+.search_box{
+    width: 200px;
+}
+
+.input_wrapper{
+    width: 170px;
+    height: 20px;
+    position: relative;
+}
+
+.search_icon{
+    position: absolute;
+    top: 20%;
+    left: 4px;
+}
+
+.search_input{
+    width: 170px;
+    height: 20px;
+    border-radius: 4px;
+    padding-left: 30px;
+}
