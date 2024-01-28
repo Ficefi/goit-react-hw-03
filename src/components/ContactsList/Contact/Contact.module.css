@@ -1,10 +1,13 @@
 .user_card{
-    border: 2px solid black;
+    background: transparent;
+    border: 1px solid #fff;
     border-radius: 5px;
     height: 72px;
     padding: 0 100px 10px  15px;
     position: relative;
     margin-right: 20px;
+    margin-bottom: 20px;
+    color: #fff;
 }
 
 .user_icon{
@@ -21,6 +24,7 @@
 }
 
 .trash_icon{
+    fill: #fff;
     transition: fill 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 

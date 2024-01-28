@@ -7,16 +7,19 @@ export const SearchBox = ({ value, onSearch }) => {
 
   return (
     <div className={css.search_box}>
-      <label htmlFor={searchID}>Find contacts by name</label>
+      <label htmlFor={searchID} className={css.search_label}>
+        Find contacts by name
+      </label>
       <div className={css.input_wrapper}>
-        <BsSearch className={css.search_icon} />
         <input
           type="text"
           id={searchID}
           value={value}
           className={css.search_input}
           onChange={(evt) => onSearch(evt.target.value)}
+          placeholder="Search your contact"
         />
+        <BsSearch className={css.search_icon} />
       </div>
     </div>
   );

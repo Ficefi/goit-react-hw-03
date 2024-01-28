@@ -12,9 +12,9 @@ const userSchema = Yup.object().shape({
     .matches(/^[^0-9][^@#%^&$*]+$/, "Your name isn`t right")
     .required("This is a required field"),
   number: Yup.string()
+    .matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/, "It`s must be a phone number")
     .min(7, "Number must be a 7 symb")
     .max(7, "Number must be a 7 symb")
-    .matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/, "It`s must be a phone number")
     .required("This is a required field"),
 });
 
@@ -37,13 +37,21 @@ export const ContactForm = ({ addUser }) => {
       }}
     >
       <Form className={css.form}>
-        <label htmlFor={nameID}>Name</label>
-        <Field type="text" name="name" id={nameID}></Field>
-        <ErrorMessage name="name" component="span" />
-        <label htmlFor={phoneID}>Number</label>
-        <Field type="tel" name="number" id={phoneID}></Field>
-        <ErrorMessage name="number" component="span" />
-        <button type="submit">Add contact {<BsFillPersonPlusFill />}</button>
+        <label htmlFor={nameID} className={css.user_label}>
+          Name
+        </label>
+        <Field type="text" name="name" id={nameID} className={css.user_input}></Field>
+        <ErrorMessage name="name" component="span" className={css.error} />
+        <br />
+        <br />
+        <label htmlFor={phoneID} className={css.user_label}>
+          Number
+        </label>
+        <Field type="tel" name="number" id={phoneID} className={css.user_input}></Field>
+        <ErrorMessage name="number" component="span" className={css.error} />
+        <button type="submit" className={css.add_btn}>
+          Add contact {<BsFillPersonPlusFill size={18} />}
+        </button>
       </Form>
     </Formik>
   );

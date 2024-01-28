@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactForm } from "./ContactForm/ContactForm";
 import { SearchBox } from "./SearchBox/SearchBox";
 import { ContactList } from "./ContactsList/ContactList";
@@ -11,13 +11,27 @@ const usersList = [
   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
 ];
 
+const key = "saved-users";
+
 export const App = () => {
-  const [users, setUsers] = useState(usersList);
+  const [users, setUsers] = useState(() => {
+    const savedUsers = window.localStorage.getItem(key);
+
+    if (savedUsers !== null) {
+      return JSON.parse(savedUsers);
+    }
+
+    return usersList;
+  });
   const [valueSearchBox, setValueSearchBox] = useState("");
 
   const visibleUsers = users.filter((user) =>
     user.name.toLowerCase().includes(valueSearchBox.toLowerCase())
   );
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(users));
+  }, [users]);
 
   const addToList = (newbie) => {
     setUsers((prevUsers) => {
@@ -33,7 +47,14 @@ export const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h2
+        style={{
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        Phonebook
+      </h2>
       <ContactForm addUser={addToList} />
       <SearchBox value={valueSearchBox} onSearch={setValueSearchBox} />
       <ContactList users={visibleUsers} onDelete={deleteFromList} />
